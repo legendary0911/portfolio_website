@@ -16,11 +16,12 @@ function Project(props) {
             hii its project page
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit  mx-auto">
             <ProjectCard desc="hiiiii1" img="https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg"/>
-            <ProjectCard desc="hiiiii2"/>
-            <ProjectCard desc="hiiiii3"/>
-            <ProjectCard desc="hiiiii4"/>
-            <ProjectCard desc="hiiiii5"/>
-            <ProjectCard desc="hiiiii6"/>
+            <ProjectCard desc="hiiiii1" img="https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg"/>
+            <ProjectCard desc="hiiiii1" img="https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg"/>
+            <ProjectCard desc="hiiiii1" img="https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg"/>
+            <ProjectCard desc="hiiiii1" img="https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg"/>
+            <ProjectCard desc="hiiiii1" img="https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg"/>
+            
                 
             </div>
             
