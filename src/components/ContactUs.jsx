@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 function Contact() {
 
     return (
-        <div id="contact">
+        <div id="contact" className="h-[60%]">
             <section class=" bg-fixed bg-[url('https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg')] dark:bg-gray-900">
                 <div class="  py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
                     <div className="">
@@ -16,19 +16,19 @@ function Contact() {
                 </div>
             </section>
             <div>
-            <section class=" h-[26rem] dark:bg-gray-900 ">
-                <div class="  py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-                <form action="#" className="dark:bg-[#1f2937] relative bottom-72 shadow-2xl shadow-black/60  py-10 px-10 rounded-xl space-y-8">
+            <section class=" h-[29rem] dark:bg-gray-900 ">
+                <div class="  h-[29rem] py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+                <form action="#" data-aos="zoom-in-up" data-aos-duration="1100" className="bg-[#1f2937] text-white relative bottom-72 shadow-2xl shadow-black/60  py-10 px-10 rounded-xl space-y-8">
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
+                            <label for="email" class="block mb-2 text-sm font-medium  dark:text-gray-300">Your email</label>
                             <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required></input>
                         </div>
                         <div>
-                            <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
+                            <label for="subject" class="block mb-2 text-sm font-medium  dark:text-gray-300">Subject</label>
                             <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you" required></input>
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
+                            <label for="message" class="block mb-2 text-sm font-medium  dark:text-gray-400">Your message</label>
                             <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
                         </div>
                         <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send message</button>

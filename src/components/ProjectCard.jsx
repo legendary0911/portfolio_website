@@ -4,14 +4,16 @@ import ReactDOM from 'react-dom/client';
 
 
 
-function ExpertiseCard(props) {
+function ProjectCard(props) {
     return (
-        <div className="mt-8 bg-yellow-500">
     
-        hii its projects card
+        <div className="mt-8 bg-white h-48 w-52 rounded-md">
+    
+        {props.no}
         </div>
+        
     )
 }
 
-export default ExpertiseCard;
+export default ProjectCard;
 
