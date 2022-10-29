@@ -7,10 +7,10 @@ import ReactDOM from 'react-dom/client';
 function ProjectCard(props) {
     return (
 
-        <div className="mt-8 mx-6 bg-[#111827] hover:scale-110 duration-200 h-80 w-96 rounded-lg" onHove>
+        <div className="mt-8 mx-6 bg-[#111827] hover:scale-110 duration-200 h-80 w-80 md:w-96 rounded-lg" onHove>
             <div><img className="h-60 rounded-t-lg" src={props.img}></img></div>
 
-            <div className="info text-white relative bottom-60 rounded-lg h-60 backdrop-blur-3xl  bg-white/[0.01] ">
+            <div className="info text-white relative bottom-6 rounded-lg  backdrop-blur-3xl  bg-white/[0.01] ">
                 <p>
                     {props.desc}
                 </p>
