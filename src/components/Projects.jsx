@@ -7,24 +7,23 @@ import ProjectCard from "./ProjectCard";
 
 function Project(props) {
 
-    const [i, seti] = useState(0)
 
     
     
     return (
-        <div id="project" className=" mt-8 dark:bg-yellow-500 bg-slate-100 h-[46rem] text-black">
+        <div id="project" className=" mt-8 dark:bg-yellow-500 bg-slate-100 h-fit pb-20 pt-10 text-black">
 
             hii its project page
-            <div className="flex">
-                {/* <div className="hover:shadow-2xl ml-40  "><ProjectCard no={i % 9} /></div>
-                <div id="q" className="hover:shadow-2xl  mr-20 ml-20 scale-125"><ProjectCard no={(i + 1) % 9} /></div>
-                <div className="hover:shadow-2xl mr-20 "><ProjectCard no={(i + 2) % 9} /></div> */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit  mx-auto">
+            <ProjectCard desc="hiiiii1" img="https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg"/>
+            <ProjectCard desc="hiiiii2"/>
+            <ProjectCard desc="hiiiii3"/>
+            <ProjectCard desc="hiiiii4"/>
+            <ProjectCard desc="hiiiii5"/>
+            <ProjectCard desc="hiiiii6"/>
+                
             </div>
-            <div className="flex">
-                <button onClick={() => { seti((i - 1)) }} className="bg-blue-500 rounded-lg px-4 py-2 ">back</button>
-                <button onClick={() => { seti((i + 1)) }} className="bg-blue-500 rounded-lg px-4 py-2 ">next</button>
-
-            </div>
+            
 
         </div>
     )

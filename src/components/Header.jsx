@@ -70,13 +70,13 @@ function Header() {
         <div className="sticky top-0 z-10 bg-yellow-500  dark:bg-[#111827] dark:text-slate-300 ">
             <div id="nav" className="  flex ">
 
-                <div className=" text-2xl font-[620] pl-[7%] pt-8">
+                <div className=" text-lg md:text-xl lg:text-2xl font-[620] pl-[7%] pt-4">
                     <ul id="animate" className="space-y-1">
-                        <li>Kumar </li>
+                        <li>Kumar</li>
                         <li className="pb-4">Shivam </li>
                     </ul>
                 </div>
-                <div className="flex absolute right-[7%] pt-12">
+                <div className="flex absolute right-[7%] pt-8">
                     <ul id="full_navbar" className="hidden md:flex justify-end space-x-8 lg:space-x-16">
 
                         <li id="About" onClick={(event) => toggle(event.target.innerText)} className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]  "><a id="link" href="#about">About</a></li>
