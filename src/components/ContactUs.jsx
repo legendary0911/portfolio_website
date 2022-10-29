@@ -18,7 +18,7 @@ function Contact() {
             <div>
             <section class=" h-[29rem] dark:bg-gray-900 ">
                 <div class="  h-[29rem] py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-                <form action="#" data-aos="zoom-in-up" data-aos-duration="1100" className="bg-[#1f2937] text-white relative bottom-72 shadow-2xl shadow-black/60  py-10 px-10 rounded-xl space-y-8">
+                <form action="#" data-aos="zoom-in-up" data-aos-duration="600" className="bg-[#1f2937] text-white relative bottom-72 shadow-2xl shadow-black/60  py-10 px-10 rounded-xl space-y-8">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium  dark:text-gray-300">Your email</label>
                             <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required></input>

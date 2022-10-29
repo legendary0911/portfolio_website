@@ -41,7 +41,7 @@ function CF() {
             </div>
 
             <div className="mx-auto hover:scale-105 duration-200 dark:text-white cf-info-div w-[60%] mb-28">
-                <div data-aos="zoom-in-up" data-aos-duration="1100" className="bg-[#111827]  text-white flex shadow-xl hover:shadow-black/80 hover:shadow-2xl shadow-black/60 info-card  rounded-2xl mx-10 first:dark:bg-[#1f2937] pt-10 pb-10 ">
+                <div data-aos="zoom-in-up" data-aos-duration="600" className="bg-[#111827]  text-white flex shadow-xl hover:shadow-black/80 hover:shadow-2xl shadow-black/60 info-card  rounded-2xl mx-10 first:dark:bg-[#1f2937] pt-10 pb-10 ">
                     <div className="profile-img-div">
                         <img className="ml-6 h-[22rem] rounded-lg" src={cf[0]?.titlePhoto}></img>
                     </div>
