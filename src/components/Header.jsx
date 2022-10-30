@@ -89,11 +89,11 @@ function Header() {
                     <div className="ml-16 space-x-2 flex font-medium text-lg" onClick={() => themeChange()}>{theme == "light" ? <MdToggleOff className="scale-[1.8] mt-1" /> : <MdToggleOn className="scale-[1.8] mt-1" />}{theme == "light" ? <MdLightMode className="scale-110 mt-1" /> : <MdDarkMode className=" mt-1" />}</div>
                     <div className=" cursor-pointer block mr-20 pb-10 absolute right-[3%] md:hidden" onClick={() => {
                         if (ham_menu === true) {
-                            document.getElementById('mobile_menu').className = "absolute right-0 top-24 md:hidden bg-white h-fit w-full hidden space-y-4";
+                            document.getElementById('mobile_menu').className = "absolute right-0 top-[80px] md:hidden bg-white h-fit w-full hidden space-y-4";
                             set_menu(false);
                         }
                         else {
-                            document.getElementById('mobile_menu').className = "absolute right-0 top-24 md:hidden bg-white h-fit w-full space-y-4";
+                            document.getElementById('mobile_menu').className = "absolute right-0 top-[80px] md:hidden bg-white h-fit w-full space-y-4";
                             set_menu(true);
                         }
 
@@ -107,8 +107,8 @@ function Header() {
                 </div>
 
             </div>
-            <div className="">
-                <ul id="mobile_menu" className="absolute  right-0 top-24 md:hidden items-end bg-red-400 h-fit w-full hidden space-y-4">
+            <div className="-mt-6">
+                <ul id="mobile_menu" className="absolute  right-0 top-23.5 md:hidden items-end bg-red-400 h-fit w-full hidden space-y-4">
                     <li id="About2" onClick={(event) => toggleham(event.target.innerText)} className="text-black text-end pr-12  font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]  "><a id="link" href="#about">About</a></li>
                     <li id="Skills2" onClick={(event) => toggleham(event.target.innerText)} className=" text-black text-end pr-12 font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="#skill">Skills</a></li>
                     <li id="CF Rating2" onClick={(event) => toggleham(event.target.innerText)} className=" text-black text-end pr-12  font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms] "><a id="link" href="#cf">CF Rating</a> </li>
