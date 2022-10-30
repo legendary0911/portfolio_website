@@ -57,7 +57,7 @@ function Intro() {
         </div>
         <div className="flex mb-10 space-x-6   ">
         <div className="right mx-auto  ">
-          <img className='mt-10 lg:mt-10 pb-10 pr-10 duration-300 scale-110 mx-auto h-[80%] md:h-[90%] lg:h-[100%]' src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mobile-app.svg"></img>
+          <img loading="lazy" className='mt-10 lg:mt-10 pb-10 pr-10 duration-300 scale-110 mx-auto h-[80%] md:h-[90%] lg:h-[100%]' src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mobile-app.svg"></img>
         </div>
         <div className="lg:block hidden">
           <div className="border-l-[2.5px] dark:border-white/50 border-black/50 h-[60%] mt-10"></div>
