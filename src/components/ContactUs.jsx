@@ -9,9 +9,9 @@ function Contact() {
         <div id="contact" className="h-[60%] pb-10">
             <section class=" bg-fixed bg-[url('https://www.collab2.co.za/wp-content/uploads/2017/06/contact-us-background.jpg')] dark:bg-gray-900">
                 <div class="  py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-                    <div className="">
-                        <h2 class="mb-10 mt-10 font-alb text-5xl md:text-6xl lg:text-7xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us</h2>
-                        <p class=" mb-64 font-normal text-center text-white  sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
+                    <div className="items-center">
+                        <h2 class="mb-10 mt-10 font-alb text-5xl md:text-6xl lg:text-7xl tracking-tight font-[600] text-center text-white bg-blue-700 rounded-2xl py-4">Contact Me</h2>
+                        <p class=" mb-64 font-normal text-center text-white  sm:text-xl">Got a technical issue? Want to send feedback ? Need details about our Business plan? Let me know.</p>
                     </div>
                 </div>
             </section>
@@ -45,7 +45,7 @@ function Contact() {
                 <div>
                     <div className="flex mt-10 space-x-16 md:space-x-20 lg:space-x-28  justify-center ">
                         <a
-                            href="#"
+
                             className="text-black/70 dark:text-gray-500 hover:text-gray-900 hover:scale-[2] scale-[1.5] duration-200 dark:hover:text-white"
                         >
                             <svg
@@ -63,7 +63,7 @@ function Contact() {
                             <span className="sr-only">Facebook page</span>
                         </a>
                         <a
-                            href="#"
+
                             className="text-black/70 dark:text-gray-500 hover:text-gray-900 hover:scale-[2] scale-[1.5] duration-200 dark:hover:text-white"
                         >
                             <svg
@@ -79,7 +79,7 @@ function Contact() {
                             <span className="sr-only">Twitter page</span>
                         </a>
                         <a
-                            href="#"
+                            href="https://www.instagram.com/kumarshivam_09/"
                             className="text-black/70 dark:text-gray-500 hover:text-gray-900 hover:scale-[2] scale-[1.5] duration-200 dark:hover:text-white"
                         >
                             <svg
@@ -98,7 +98,7 @@ function Contact() {
                         </a>
 
                         <a
-                            href="#"
+                            href="https://github.com/legendary0911"
                             className="text-black/70 dark:text-gray-500 hover:text-gray-900 hover:scale-[2] scale-[1.5] duration-200 dark:hover:text-white"
                         >
                             <svg

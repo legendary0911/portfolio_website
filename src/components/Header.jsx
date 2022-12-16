@@ -10,7 +10,7 @@ import { useInView } from 'react-intersection-observer';
 
 function Header() {
     const [ham_menu, set_menu] = useState(false);
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState("dark");
 
 
 
@@ -72,8 +72,8 @@ function Header() {
 
                 <div className=" text-lg md:text-xl lg:text-2xl font-[620] pl-[7%] pt-4">
                     <ul id="animate" className="space-y-1">
-                        <li>Kumar</li>
-                        <li className="pb-4">Shivam </li>
+                        <li className="">Kumar</li>
+                        <li className="dark:text-yellow-500 text-red-600 pb-4">Shivam </li>
                     </ul>
                 </div>
                 <div className="flex absolute right-[7%] pt-8">
