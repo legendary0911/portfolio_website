@@ -50,13 +50,21 @@ function CF() {
                     <div className="info-div items-center">
 
                         <ul className=" mx-auto lg:ml-8 mt-10 lg:mt-0 pr-6 w-fit lg:pr-10">
-                            <li className="font-title text-6xl lg:text-7xl bg-gradient-to-r text-transparent bg-clip-text from-white via-slate-300 to-slate-800 mb-2">{cf[0]?.handle}</li>
-                            <li className=" text-xl sm:text-2xl font-alb mb-10" >{cf[0]?.rank}</li>
+                            {/* <li className="font-title text-6xl lg:text-7xl bg-gradient-to-r text-transparent bg-clip-text from-white via-slate-300 to-slate-800 mb-2">{cf[0]?.handle}</li> */}
+                            {/* <li className=" text-xl sm:text-2xl font-alb mb-10" >{cf[0]?.rank}</li> */}
+                            <li className="font-title text-6xl lg:text-7xl bg-gradient-to-r text-transparent bg-clip-text from-white via-slate-300 to-slate-800 mb-2">Legendary11</li>
+
+                            <li className=" text-xl sm:text-2xl font-alb mb-10" >Specialist</li>
+
                             <li className=" text-lg sm:text-xl mb-4">friends of :    <span className="ml-2 text-blue-500  text-xl ">{cf[0]?.friendOfCount}</span></li>
-                            <li className=" text-lg sm:text-xl mb-4">current rank :<span className="ml-4 text-blue-500  text-xl ">{cf[0]?.rank}</span></li>
+                            {/* <li className=" text-lg sm:text-xl mb-4">current rank :<span className="ml-4 text-blue-500  text-xl ">{cf[0]?.rank} </span></li>
                             <li className=" text-lg sm:text-xl mb-4">current rating :<span className="ml-4 text-blue-500  text-xl ">{cf[0]?.rating}</span></li>
                             <li className=" text-lg sm:text-xl mb-4">max rank :<span className="ml-4 text-blue-500  text-xl ">{cf[0]?.maxRank}</span></li>
-                            <li className=" text-lg sm:text-xl mb-16">max rating :<span className="ml-4 text-blue-500  text-xl ">{cf[0]?.maxRating}</span></li>
+                            <li className=" text-lg sm:text-xl mb-16">max rating :<span className="ml-4 text-blue-500  text-xl ">{cf[0]?.maxRating}</span></li> */}
+                            <li className=" text-lg sm:text-xl mb-4">current rank :<span className="ml-4 text-blue-500  text-xl "> Specialist </span></li>
+                            <li className=" text-lg sm:text-xl mb-4">current rating :<span className="ml-4 text-blue-500  text-xl "> 1506</span></li>
+                            <li className=" text-lg sm:text-xl mb-4">max rank :<span className="ml-4 text-blue-500  text-xl "> Specialist</span></li>
+                            <li className=" text-lg sm:text-xl mb-16">max rating :<span className="ml-4 text-blue-500  text-xl ">1506</span></li>
 
                         </ul>
 

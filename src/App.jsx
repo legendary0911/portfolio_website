@@ -11,7 +11,7 @@ import Project from './components/Projects'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import "swiper/css/bundle";
-
+import Timeline from "./components/timeline/timeline"
 
 function App() {
 
@@ -28,10 +28,10 @@ function App() {
       <Header />
       <Intro />
       <Fields />
-      <CF />
+      <Timeline/>
+      {/* <CF /> */}
       <Project />
       <Contact />
-
 
 
     </div>
