@@ -1,17 +1,12 @@
 import { useEffect, useState } from 'react'
-
 import './App.css'
-import Fields from './components/Fields'
-import Intro from './components/FirstPage'
-import Header from './components/Header'
-import Contact from './components/ContactUs'
-import Footer from './components/Footer'
-import CF from './components/CfApi'
-import Project from './components/Projects'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import "swiper/css/bundle";
-import Timeline from "./components/timeline/timeline"
+import Homepage from './pages/homepage'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import LoginPage from './pages/signIn-page/login-form';
+import BlogPage from './pages/blogpage';
 
 function App() {
 
@@ -24,17 +19,13 @@ function App() {
 
 
   return (
-    <div className="App bg-yellow-500 dark:bg-[#111827]" >
-      <Header />
-      <Intro />
-      <Fields />
-      <Timeline/>
-      {/* <CF /> */}
-      <Project />
-      <Contact />
-
-
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/blogs" element={<BlogPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -1,25 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-// export const verifyToken = (req, res, next) => {
-//     const token = req.cookies.accessToken
-
-//     if (!token) {
-//         return res.status(401).json({ success: false, message: "You're not authorize no token" })
-//     }
-
-//     jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
-//         if (err) {
-//             return res.status(401).json({ success: false, message: "invalid token" })
-//             // return res.status(200).json({ success: true, message: user.admin })
-
-//         }
-
-//         req.user = user
-//         next()
-//     })
-// }
-
-
 export const verifyUser = (req, res, next) => {
     const token = req.cookies.accessToken
 
