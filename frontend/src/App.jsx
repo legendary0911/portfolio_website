@@ -7,6 +7,7 @@ import Homepage from './pages/homepage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LoginPage from './pages/signIn-page/login-form';
 import BlogPage from './pages/blogpage';
+import Header from './components/Header';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />

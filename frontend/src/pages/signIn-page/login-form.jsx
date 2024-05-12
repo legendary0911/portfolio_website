@@ -15,16 +15,12 @@ function LoginPage() {
   }
   return (
 
-    <div>
+    <div className=' h-[calc(100vh-70px)]  flex dark:bg-[#111827] bg-yellow-500'>
 
-      <div class="">
-        {/* <Header /> */}
-        <div class="flex  bg-[#76f2fe]  justify-center ">
-          {user ? <SignupCard on={handleClick} /> : <LoginCard on={handleClick} />}
+      <div className='m-auto md:w-[60%] w-[90%] lg:w-[45%]'>
+        {user ? <SignupCard on={handleClick} /> : <LoginCard on={handleClick} />}
 
-        </div>
       </div>
-
     </div>
 
   )

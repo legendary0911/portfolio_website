@@ -3,8 +3,13 @@ import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { MdToggleOff, MdToggleOn, MdDarkMode, MdLightMode } from 'react-icons/md';
+import { useUser } from '../Contextapi';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function Header() {
+    const navigateTo = useNavigate();
+    const { user, loginUser, logoutUser, userdata } = useUser()
     const [ham_menu, set_menu] = useState(false);
     const [theme, setTheme] = useState("dark");
 
@@ -19,8 +24,37 @@ function Header() {
         }
     }
 
+    const Blogsender = async (e) => {
+        e.preventDefault();
+        let response;
+        console.log(userdata.token)
+        try {
+            response = await axios.post('http://localhost:3000/api/blogs',
+                {
+                    title: "My Admin Blog final Post",
+                    content: "This is the content of my second blog post.",
+                    author: "shivam",
+                    "token": userdata.token
+
+                }
+            )
+            console.log(response.data);
+            // alert("Login successfully");
+
+        } catch (err) {
+            console.log(err.response.data)
+        }
+
+    }
+
+    function logout() {
+        logoutUser()
+        navigateTo("/login");
+
+    }
+
     return (
-        <div className='h-fit'>
+        <div className='h-[70px]'>
             <div className="sticky top-0 z-10 h-20 bg-yellow-500  dark:bg-[#111827] dark:text-slate-300 ">
                 <div id="nav" className="  flex ">
                     <div className=" text-lg md:text-xl lg:text-2xl font-[620] pl-[7%] pt-8">
@@ -31,9 +65,15 @@ function Header() {
                     <div className="flex absolute right-[7%] pt-8">
                         <ul id="full_navbar" className="hidden md:flex justify-end space-x-8 lg:space-x-16">
                             <li id="Home" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]  "><a id="link" href="/">Home</a></li>
-                            <li id="Login" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">LogIn</a></li>
+                            {user ?
+                                <li id="Logout" onClick={logout} className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">LogOut</a></li>
+                                :
+                                <li id="Login" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">LogIn</a></li>
+                            }
                             <li id="Blogs" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/blogs">Blogs</a> </li>
-                            <li id="Contact Me" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/#contact">Contact Me</a> </li>
+                            <li id="Contact Me"
+                                // onClick={Blogsender}
+                                className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/#contact">Contact Me</a> </li>
                         </ul>
                         <div className="ml-16 space-x-2 flex font-medium text-lg" onClick={() => themeChange()}>{theme == "light" ? <MdToggleOff className="scale-[1.8] mt-1" /> : <MdToggleOn className="scale-[1.8] mt-1" />}{theme == "light" ? <MdLightMode className="scale-110 mt-1" /> : <MdDarkMode className=" mt-1" />}</div>
                         <div className=" cursor-pointer block mr-20 pb-10 absolute right-[3%] md:hidden" onClick={() => {
