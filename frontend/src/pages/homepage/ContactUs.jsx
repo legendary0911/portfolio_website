@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Footer from '../../components/Footer';
 import Loader from '../../components/Loader';
+import { toast } from 'react-toastify';
 
 function Contact() {
     const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +26,6 @@ function Contact() {
         const serviceId = import.meta.env.VITE_SERVICE_ID;
         const templateId = import.meta.env.VITE_TEMPLATE_ID;
         const publicKey = import.meta.env.VITE_PUBLIC_KEY;
-
 
         // Create an object with EmailJS service ID, template ID, Public Key, and Template params
         const emaildata = {
@@ -52,9 +52,29 @@ function Contact() {
                 message: ''
             })
             setIsLoading(false)
-            alert("Thank You for reaching me out")
+
+            toast.success("Thank You for reaching me out", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "dark",
+
+            });
         } catch (error) {
             console.error(error);
+            toast.error("Error occured! Please try again", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "dark",
+
+            });
             setIsLoading(false)
         }
     }

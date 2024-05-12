@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useUser } from '../../api/Contextapi';
 import Loader from '../../components/Loader'
-
+import { toast } from 'react-toastify';
 
 
 const SignupCard = (props) => {
@@ -49,17 +49,45 @@ const SignupCard = (props) => {
       );
       setIsLoading(false)
       console.log('Response:', response.data);
-      alert("Account created successfully");
-      loginUser("hi")
+      toast.success("Account created successfully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "dark",
+
+      });
+      loginUser({ token: response.data.token })
       navigateTo("/blogs");
     } catch (error) {
       setIsLoading(false)
       console.log(error.response.data)
       const errorcode = error.response.status
       if (errorcode === 400) {
-        alert("Email already exists")
+        toast.error("Email already exists", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "dark",
+
+        });
       } else {
-        alert("Internal server error. Please try again")
+
+        toast.error("Internal server error. Please try again", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "dark",
+
+        });
       }
     }
   }

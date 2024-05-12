@@ -6,6 +6,7 @@ import { MdToggleOff, MdToggleOn, MdDarkMode, MdLightMode } from 'react-icons/md
 import { useUser } from '../api/Contextapi';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Header() {
     const navigateTo = useNavigate();
@@ -48,8 +49,19 @@ function Header() {
     }
 
     function logout() {
+        // toast.success("Successfully Logged Out", {
+        //     position: "top-right",
+        //     autoClose: 3000,
+        //     hideProgressBar: true,
+        //     closeOnClick: true,
+        //     pauseOnHover: false,
+        //     draggable: false,
+        //     theme: "dark",
+
+        // });
         logoutUser()
         navigateTo("/login");
+
 
     }
 

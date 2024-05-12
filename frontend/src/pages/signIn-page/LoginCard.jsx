@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useUser } from '../../api/Contextapi';
 import Loader from '../../components/Loader'
+import { toast } from 'react-toastify';
+
 const LoginCard = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,20 +45,44 @@ const LoginCard = (props) => {
       )
       setIsLoading(false)
       console.log(response.data);
-      // alert("Login successfully");
-      console.log("userdata " + userdata)
+      toast.success("Login successfully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "dark",
 
+      });
       loginUser({ token: response.data.token })
-      console.log("userdata " + userdata.token)
       navigateTo("/blogs");
     } catch (err) {
       setIsLoading(false)
-      console.log(err.response.data)
-      const errorcode = err.response.status
+      console.log(err?.response)
+      const errorcode = err?.response.status
       if (errorcode == 500) {
-        alert("Internal server error. Please try again")
+        toast.error("Internal server error. Please try again", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "dark",
+
+        });
       } else {
-        alert("Invalid Credentials")
+        toast.error("Invalid Credentials", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "dark",
+
+        });
       }
     }
 
