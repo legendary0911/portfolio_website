@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+import '../styles/App.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import "swiper/css/bundle";
-import Homepage from './pages/homepage'
+import Homepage from '../pages/homepage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import LoginPage from './pages/signIn-page/login-form';
-import BlogPage from './pages/blogpage';
-import Header from './components/Header';
+import LoginPage from '../pages/signIn-page/login-form';
+import BlogPage from '../pages/blogpage';
+import Header from '../components/Header';
 
 function App() {
 

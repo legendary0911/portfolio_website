@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { MdToggleOff, MdToggleOn, MdDarkMode, MdLightMode } from 'react-icons/md';
-import { useUser } from '../Contextapi';
+import { useUser } from '../api/Contextapi';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -29,7 +29,7 @@ function Header() {
         let response;
         console.log(userdata.token)
         try {
-            response = await axios.post('http://localhost:3000/api/blogs',
+            response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/blogs`,
                 {
                     title: "My Admin Blog final Post",
                     content: "This is the content of my second blog post.",

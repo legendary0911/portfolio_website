@@ -4,7 +4,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { useUser } from '../../Contextapi';
+import { useUser } from '../../api/Contextapi';
 
 const LoginCard = (props) => {
   const { user, loginUser, logoutUser, userdata } = useUser()
@@ -32,7 +32,7 @@ const LoginCard = (props) => {
     let response;
     try {
       console.log(data)
-      response = await axios.post('http://localhost:3000/api/auth/login',
+      response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/login`,
         {
           email: data.email,
           password: data.password

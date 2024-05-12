@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import { UserProvider } from './Contextapi'
+import App from './Router/index'
+import { UserProvider } from './api/Contextapi'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
