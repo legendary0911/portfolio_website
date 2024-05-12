@@ -90,7 +90,7 @@ const LoginCard = (props) => {
 
           <div class="flex flex-col items-center -mt-4 mb-6">
 
-            <button
+            <button type="submit"
               class="bg-blue-500 text-white w-fit rounded-xl py-2 px-10 shadow-2xl hover:bg-blue-600 hover:scale-105 duration-200"
             >
               Sign In
