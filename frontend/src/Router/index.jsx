@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 import "swiper/css/bundle";
 import Homepage from '../pages/homepage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import LoginPage from '../pages/signIn-page/login-form';
+import LoginPage from '../pages/signIn-page';
 import BlogPage from '../pages/blogpage';
 import Header from '../components/Header';
 

@@ -5,10 +5,12 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useUser } from '../../api/Contextapi';
+import Loader from '../../components/Loader'
 
 
 
 const SignupCard = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { user, loginUser, logoutUser, userdata } = useUser()
   const navigateTo = useNavigate();
   const [visibility, setvisibility] = useState(null);
@@ -18,21 +20,26 @@ const SignupCard = (props) => {
     email: '',
     password: ''
   });
+
   const { name, email, password } = data;
+
   const onChangeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+
   const handleClick = () => {
     if (visibility === null) setvisibility("hii")
     else setvisibility(null)
     if (pass === "password") passvisible("text")
     else passvisible("password")
   }
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     try {
       console.log(data)
+      setIsLoading(true)
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/signup`,
         {
           // name: data.name,
@@ -40,11 +47,13 @@ const SignupCard = (props) => {
           password: data.password
         }
       );
+      setIsLoading(false)
       console.log('Response:', response.data);
       alert("Account created successfully");
       loginUser("hi")
       navigateTo("/blogs");
     } catch (error) {
+      setIsLoading(false)
       console.log(error.response.data)
       const errorcode = error.response.status
       if (errorcode === 400) {
@@ -57,6 +66,8 @@ const SignupCard = (props) => {
 
   return (
     <div>
+      {isLoading && <Loader />}
+
       <div class="shadow-2xl h-fit  items-center  mx-auto  rounded-md text-center bg-white mb-6">
         <h1 class="mt-[3%] mb-10 h1 text-3xl font-semibold pt-6 cursor-default">
           Sign Up

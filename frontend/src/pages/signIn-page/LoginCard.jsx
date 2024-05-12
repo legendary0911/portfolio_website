@@ -5,8 +5,10 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useUser } from '../../api/Contextapi';
-
+import Loader from '../../components/Loader'
 const LoginCard = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { user, loginUser, logoutUser, userdata } = useUser()
   const [visibility, setvisibility] = useState(null);
   const [pass, passvisible] = useState("password")
@@ -32,12 +34,14 @@ const LoginCard = (props) => {
     let response;
     try {
       console.log(data)
+      setIsLoading(true)
       response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/login`,
         {
           email: data.email,
           password: data.password
         }
       )
+      setIsLoading(false)
       console.log(response.data);
       // alert("Login successfully");
       console.log("userdata " + userdata)
@@ -46,6 +50,7 @@ const LoginCard = (props) => {
       console.log("userdata " + userdata.token)
       navigateTo("/blogs");
     } catch (err) {
+      setIsLoading(false)
       console.log(err.response.data)
       const errorcode = err.response.status
       if (errorcode == 500) {
@@ -60,6 +65,8 @@ const LoginCard = (props) => {
 
   return (
     <div className=''>
+      {isLoading && <Loader />}
+
       <div class="shadow-2xl h-fit  items-center  mx-auto  rounded-md text-center bg-white mb-6">
         <h1 class="mt-[3%] mb-10 h1 text-3xl font-semibold pt-6 cursor-default">
           Sign In
