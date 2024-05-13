@@ -16,6 +16,7 @@ function LoginPage() {
   }
   return (
     <div>
+      {/* <Header /> */}
       <div className=' h-[calc(100vh-70px)]  flex dark:bg-[#111827] bg-yellow-500'>
 
         <div className='m-auto md:w-[60%] w-[90%] lg:w-[45%]'>

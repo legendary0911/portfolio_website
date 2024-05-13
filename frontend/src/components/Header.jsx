@@ -71,16 +71,18 @@ function Header() {
                 <div id="nav" className="  flex ">
                     <div className=" text-lg md:text-xl lg:text-2xl font-[620] pl-[7%] pt-8">
                         <ul id="animate" className="space-y-1">
-                            <li className="">Kumar <span className="dark:text-yellow-500 text-20d-600 pb-4">Shivam </span></li>
+                            <a id="link" href="/">
+                                <li className="">Kumar <span className="dark:text-yellow-500 text-20d-600 pb-4">Shivam </span></li>
+                            </a>
                         </ul>
                     </div>
                     <div className="flex absolute right-[7%] pt-8">
                         <ul id="full_navbar" className="hidden md:flex justify-end space-x-8 lg:space-x-16">
                             <li id="Home" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]  "><a id="link" href="/">Home</a></li>
                             {user ?
-                                <li id="Logout" onClick={logout} className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">LogOut</a></li>
+                                <li id="Logout" onClick={logout} className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">Logout</a></li>
                                 :
-                                <li id="Login" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">LogIn</a></li>
+                                <li id="Login" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">Login</a></li>
                             }
                             <li id="Blogs" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/blogs">Blogs</a> </li>
                             <li id="Contact Me"

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from '../../api/Contextapi';
 import Loader from '../../components/Loader'
 import { toast } from 'react-toastify';
+import { authWithGoogle } from '../../api/FireBase';
 
 const LoginCard = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,7 @@ const LoginCard = (props) => {
     try {
       console.log(data)
       setIsLoading(true)
-      response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/login`,
+      response = await axios.post("http://localhost:3000/api/auth/login",
         {
           email: data.email,
           password: data.password
@@ -45,47 +46,61 @@ const LoginCard = (props) => {
       )
       setIsLoading(false)
       console.log(response.data);
-      toast.success("Login successfully", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        theme: "dark",
-
+      toast.success(response.data.message, {
+        position: "top-right", autoClose: 3000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
       });
       loginUser({ token: response.data.token })
       navigateTo("/blogs");
     } catch (err) {
       setIsLoading(false)
       console.log(err?.response)
-      const errorcode = err?.response.status
-      if (errorcode == 500) {
-        toast.error("Internal server error. Please try again", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: false,
-          theme: "dark",
-
+      if (err.response) {
+        toast.error(err.response.data.error, {
+          position: "top-right", autoClose: 3000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
         });
       } else {
-        toast.error("Invalid Credentials", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: false,
-          theme: "dark",
+        toast.error("Something went wrong. Please try again", {
+          position: "top-right", autoClose: 3000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
+        });
+      }
 
+    }
+
+  }
+
+  const handleGoogleAuth = async (e) => {
+    let user;
+    try {
+      user = await authWithGoogle();
+      setIsLoading(true)
+
+      let response = await axios.post("http://localhost:3000/api/auth/googlesignin",
+        {
+          access_token: user.accessToken
+        }
+      )
+      setIsLoading(false)
+      console.log(response.data);
+
+      toast.success(response.data.message, {
+        position: "top-right", autoClose: 3000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
+      });
+
+      loginUser({ token: response.data.token })
+      navigateTo("/blogs");
+    } catch (error) {
+      setIsLoading(false)
+      console.error(error);
+      if (error.response) {
+        toast.error(error?.response.data.error, {
+          position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
+        });
+      } else {
+        toast.error("Something went wrong.Please try again later.", {
+          position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
         });
       }
     }
-
   }
 
 
@@ -137,9 +152,7 @@ const LoginCard = (props) => {
         </div>
 
         <div class="flex justify-center">
-          <div class="flex  mb-6 hover:scale-105 hover:text-blue-600 w-fit duration-200 ">
-
-            {/* <GoogleIcon className='mr-[5px] text-blue-600 '></GoogleIcon> */}
+          <div onClick={handleGoogleAuth} class="flex  mb-6 hover:scale-105 hover:text-blue-600 w-fit duration-200 ">
             <div><img className="h-5 w-5 mr-[8px]" src="https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png" /></div>
             <p class="text-sm  cursor-pointer">Sign in with Google</p>
           </div>

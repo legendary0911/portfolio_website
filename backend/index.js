@@ -3,14 +3,20 @@ import dotenv from 'dotenv';
 import mongoose from "mongoose";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
-
+import admin from "firebase-admin"
 import authRoutes from './routes/authRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
+import serviceAccountKey from "./firebase_admin_sdk.json" with { type: "json" };
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccountKey)
+})
+
 const corsOptions = {
   origin: true,
   credentials: true

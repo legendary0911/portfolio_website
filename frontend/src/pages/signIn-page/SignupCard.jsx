@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from '../../api/Contextapi';
 import Loader from '../../components/Loader'
 import { toast } from 'react-toastify';
+import { authWithGoogle } from '../../api/FireBase';
 
 
 const SignupCard = (props) => {
@@ -40,53 +41,64 @@ const SignupCard = (props) => {
     try {
       console.log(data)
       setIsLoading(true)
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/signup`,
+      const response = await axios.post("http://localhost:3000/api/auth/signup",
         {
-          // name: data.name,
+          name: data.name,
           email: data.email,
           password: data.password
         }
       );
       setIsLoading(false)
       console.log('Response:', response.data);
-      toast.success("Account created successfully", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        theme: "dark",
-
+      toast.success(response.data.message, {
+        position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
       });
-      loginUser({ token: response.data.token })
-      navigateTo("/blogs");
+      navigateTo("/login");
+
     } catch (error) {
       setIsLoading(false)
       console.log(error.response.data)
-      const errorcode = error.response.status
-      if (errorcode === 400) {
-        toast.error("Email already exists", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: false,
-          theme: "dark",
-
+      if (error.response) {
+        toast.error(error.response.data.error, {
+          position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
         });
       } else {
+        toast.error("Something went wrong. Please try again", {
+          position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
+        });
+      }
+    }
+  }
 
-        toast.error("Internal server error. Please try again", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: false,
-          theme: "dark",
+  const handleGoogleAuth = async (e) => {
+    let user;
+    try {
+      user = await authWithGoogle();
+      setIsLoading(true)
 
+      let response = await axios.post("http://localhost:3000/api/auth/googlesignup",
+        {
+          access_token: user.accessToken
+        }
+      )
+      setIsLoading(false)
+      console.log(response.data);
+
+      toast.success(response.data.message, {
+        position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
+      });
+
+      navigateTo("/login");
+    } catch (error) {
+      setIsLoading(false)
+      console.error(error);
+      if (error.response) {
+        toast.error(error?.response.data.error, {
+          position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
+        });
+      } else {
+        toast.error("Something went wrong.Please try again later.", {
+          position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
         });
       }
     }
@@ -151,7 +163,7 @@ const SignupCard = (props) => {
         </div>
 
         <div class="flex justify-center">
-          <div class="flex mb-6 hover:scale-105 hover:text-blue-600 w-fit duration-200  ">
+          <div onClick={handleGoogleAuth} class="flex mb-6 hover:scale-105 hover:text-blue-600 w-fit duration-200  ">
 
             <div><img className="h-5 w-5 mr-[8px]" src="https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png" /></div>
             <p class="text-sm hover:text-blue-500 cursor-pointer">Sign up with Google</p>
