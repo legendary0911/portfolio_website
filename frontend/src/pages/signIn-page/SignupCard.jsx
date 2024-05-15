@@ -54,6 +54,7 @@ const SignupCard = (props) => {
         position: "top-right", autoClose: 5000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
       });
       navigateTo("/login");
+      window.location.reload();
 
     } catch (error) {
       setIsLoading(false)
@@ -89,6 +90,7 @@ const SignupCard = (props) => {
       });
 
       navigateTo("/login");
+      window.location.reload();
     } catch (error) {
       setIsLoading(false)
       console.error(error);

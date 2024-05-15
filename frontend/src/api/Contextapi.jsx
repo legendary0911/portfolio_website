@@ -31,7 +31,7 @@ function useLocalStorage(key, initialValue) {
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useLocalStorage('user', false);
-    const [userdata, setUserData] = useLocalStorage('userdata', { token: null });
+    const [userdata, setUserData] = useLocalStorage('userdata', { token: null, admin: false });
 
     const loginUser = (userData) => {
         setUser(true);
@@ -40,7 +40,7 @@ export const UserProvider = ({ children }) => {
 
     const logoutUser = () => {
         setUser(false);
-        setUserData({ token: null });
+        setUserData({ token: null, admin: false });
     };
 
     return (

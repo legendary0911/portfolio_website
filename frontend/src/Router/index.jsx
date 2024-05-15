@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LoginPage from '../pages/signIn-page';
 import BlogPage from '../pages/blogpage';
 import Header from '../components/Header';
+import Editor from '../pages/editorpage';
 
 function App() {
 
@@ -26,6 +27,8 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/blogs" element={<BlogPage />} />
+        <Route path="/editor" element={<Editor />} />
+
       </Routes>
     </BrowserRouter>
   )

@@ -1,12 +1,31 @@
 import Blog from '../model/Blog.js';
+import { nanoid } from 'nanoid';
 
 export const createBlog = async (req, res) => {
   try {
-    const { title, content, author } = req.body;
-    const blog = await Blog.create({ title, content, author });
-    res.status(201).json({ message: 'Blog created successfully', blog });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    const { title, banner, content, des, author, draft } = req.body;
+    if (!title.length) {
+      return res.status(403).json({ error: "You must provide a title to publish the blog" });
+    }
+    if (!des.length || des.length > 200) {
+      return res.status(403).json({ error: "You must provide blog description under 200 characters" });
+    }
+    if (!banner.length) {
+      return res.status(403).json({ error: "You must provide blog banner to publish it" });
+    }
+    if (!content.blocks.length) {
+      return res.status(403).json({ error: "You must provide blog content to publish it" });
+    }
+
+    let blog_id = title.replace(/[^a-zA-z0-9]/g, ' ').replace(/\s+/g, "-").trim() + "-" + nanoid();
+    const blog = new Blog({
+      title, des, banner, content, author, draft, blog_id
+    })
+
+    const newblog = await blog.save();
+    res.status(200).json({ message: "blog created successfully", newblog })
+  } catch (err) {
+    res.status(500).json({ error: err });
   }
 };
 

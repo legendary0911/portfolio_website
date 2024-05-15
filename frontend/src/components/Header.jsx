@@ -1,18 +1,22 @@
 // import "../App.css";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { MdToggleOff, MdToggleOn, MdDarkMode, MdLightMode } from 'react-icons/md';
 import { useUser } from '../api/Contextapi';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+
 
 function Header() {
     const navigateTo = useNavigate();
     const { user, loginUser, logoutUser, userdata } = useUser()
     const [ham_menu, set_menu] = useState(false);
     const [theme, setTheme] = useState("dark");
+    const { pathname } = useLocation();
+    const [admin, setAdmin] = useState(userdata.admin);
+    useEffect(() => { setAdmin(userdata.admin) }, [userdata])
 
     function themeChange() {
         if (theme == "dark") {
@@ -77,7 +81,19 @@ function Header() {
                         </ul>
                     </div>
                     <div className="flex absolute right-[7%] pt-8">
+
+                        {/* Full Nav Bar */}
                         <ul id="full_navbar" className="hidden md:flex justify-end space-x-8 lg:space-x-16">
+                            {pathname == "/blogs" && admin ?
+                                <li id="Create" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/editor">Editor</a> </li>
+                                :
+                                null
+                            }
+                            {pathname == "/editor" && admin ?
+                                <li id="Post" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/editor">Post</a> </li>
+                                :
+                                null
+                            }
                             <li id="Home" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]  "><a id="link" href="/">Home</a></li>
                             {user ?
                                 <li id="Logout" onClick={logout} className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">Logout</a></li>
@@ -85,11 +101,13 @@ function Header() {
                                 <li id="Login" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">Login</a></li>
                             }
                             <li id="Blogs" className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/blogs">Blogs</a> </li>
-                            <li id="Contact Me"
-                                // onClick={Blogsender}
-                                className="font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/#contact">Contact Me</a> </li>
+
                         </ul>
                         <div className="ml-16 space-x-2 flex font-medium text-lg" onClick={() => themeChange()}>{theme == "light" ? <MdToggleOff className="scale-[1.8] mt-1" /> : <MdToggleOn className="scale-[1.8] mt-1" />}{theme == "light" ? <MdLightMode className="scale-110 mt-1" /> : <MdDarkMode className=" mt-1" />}</div>
+
+
+
+
                         <div className=" cursor-pointer block mr-20 pb-10 absolute right-[3%] md:hidden" onClick={() => {
                             if (ham_menu === true) {
                                 document.getElementById('mobile_menu').className = "absolute right-0 top-[80px] md:hidden bg-white h-fit w-full hidden space-y-4";
@@ -103,6 +121,8 @@ function Header() {
                     </div>
                 </div>
                 <div className="-mt-6">
+
+                    {/* Mobile Nav Menu */}
                     <ul id="mobile_menu" className="absolute  right-0 top-23.5 md:hidden items-end bg-red-400 h-fit w-full hidden space-y-4">
                         <li id="Home2" className="text-black text-end pr-12  font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]  "><a id="link" href="/">Home</a></li>
                         <li id="LogIn2" className=" text-black text-end pr-12 font-medium text-lg hover:text-blue-500 cursor-pointer hover:border-b-4 pb-2 hover:border-blue-400 ease-in-out duration-[200ms]"><a id="link" href="/login">LogIn</a></li>

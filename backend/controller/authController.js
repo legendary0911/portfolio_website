@@ -32,7 +32,7 @@ export const login = async (req, res) => {
         }
         const token = jwt.sign({ userId: user._id, admin: user.admin }, process.env.JWT_SECRET_KEY);
         res.cookie('token', token, { httpOnly: true });
-        res.status(200).json({ message: 'Login successful', token });
+        res.status(200).json({ message: 'Login successful', token, user });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -70,7 +70,7 @@ export const googlesignin = async (req, res) => {
         let { access_token } = req.body;
         const decodedUser = await getAuth().verifyIdToken(access_token);
         let { email, name } = decodedUser;
-        let user = await User.findOne({ email }).select("name  google_auth");
+        let user = await User.findOne({ email }).select("name  google_auth admin");
         if (!user) { //user doesnt exists
             return res.status(404).json({ error: 'Account doesnt exists. Signup to continue' });
         } else { //user exits
@@ -79,7 +79,7 @@ export const googlesignin = async (req, res) => {
             } else { // google signin
                 const token = jwt.sign({ userId: user._id, admin: user.admin }, process.env.JWT_SECRET_KEY);
                 res.cookie('token', token, { httpOnly: true });
-                return res.status(200).json({ "message": "Login Successful", token });
+                return res.status(200).json({ "message": "Login Successful", user, token });
             }
         }
     } catch (err) {

@@ -45,12 +45,13 @@ const LoginCard = (props) => {
         }
       )
       setIsLoading(false)
-      console.log(response.data);
+      console.log("response is" + JSON.stringify(response.data.user));
       toast.success(response.data.message, {
         position: "top-right", autoClose: 3000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
       });
-      loginUser({ token: response.data.token })
+      loginUser({ token: response.data.token, admin: response.data.user.admin })
       navigateTo("/blogs");
+      // window.location.reload();
     } catch (err) {
       setIsLoading(false)
       console.log(err?.response)
@@ -80,14 +81,15 @@ const LoginCard = (props) => {
         }
       )
       setIsLoading(false)
-      console.log(response.data);
+      console.log("response is " + JSON.stringify(response.data.user));
 
       toast.success(response.data.message, {
         position: "top-right", autoClose: 3000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: false, theme: "dark",
       });
 
-      loginUser({ token: response.data.token })
+      loginUser({ token: response.data.token, admin: response.data.user.admin })
       navigateTo("/blogs");
+      // window.location.reload();
     } catch (error) {
       setIsLoading(false)
       console.error(error);
@@ -170,4 +172,4 @@ const LoginCard = (props) => {
   );
 };
 
-export default LoginCard;
+export default LoginCard; 
