@@ -6,21 +6,27 @@ import { toast } from 'react-toastify';
 import { EditorContext } from './index';
 import EditorJS from "@editorjs/editorjs";
 import { tools } from '../../components/tools';
+import axios from "axios";
+import { useUser } from '../../api/Contextapi';
+import { useNavigate } from 'react-router-dom';
 const BlogEditor = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     let { blog, blog: { title, banner, content, des }, setBlog, editorstate, setEditorState, texteditor, setTextEditor } = useContext(EditorContext);
-
-
+    const { userdata } = useUser();
+    const navigateTo = useNavigate();
 
 
     useEffect(() => {
-        setTextEditor(new EditorJS({
-            holderId: "textEditor",
-            data: content,
-            tools: tools,
-            placeholder: "Let's write an awesome story"
-        }))
+        if (!texteditor.isReady) {
+            setTextEditor(new EditorJS({
+                holderId: "textEditor",
+                data: content,
+                tools: tools,
+                placeholder: "Let's write an awesome story"
+            }))
+        }
+
     }, [])
 
     const handlePublishForm = () => {
@@ -77,6 +83,45 @@ const BlogEditor = () => {
         input.style.height = input.scrollHeight + "px";
         setBlog({ ...blog, title: input.value.trim() })
     }
+
+    const handleSaveDraft = async (e) => {
+        if (e.target.className.includes("disable")) {
+            return toast.error("Draft is saving");
+        }
+        if (!title.length) {
+            return toast.error("Write Blog title before saving the draft");
+        }
+        const loadingToast = toast.loading("Saving draft....");
+
+
+        e.target.classList.add('disable');
+
+        if (texteditor.isReady) {
+            texteditor.save().then(async content => {
+                try {
+                    let blogObj = {
+                        title, banner, des, content, author: "Kumar Shivam", draft: true, token: userdata.token
+                    }
+
+                    const response = await axios.post("http://localhost:3000/api/blogs", blogObj)
+                    console.log(response)
+                    e.target.classList.remove('disable');
+                    toast.dismiss(loadingToast);
+                    toast.success("Draft Saved");
+                    setTimeout(() => {
+                        navigateTo("/blogs")
+                    }, 1000);
+
+                } catch (err) {
+                    console.log(err);
+                    toast.dismiss(loadingToast);
+                    e.target.classList.remove('disable')
+                    return toast.error(err);
+                }
+            })
+        }
+
+    }
     return (
         <div className='  text-white mx-auto bg-yellow-500  dark:bg-[#111827] '>
             {isLoading && <Loader />}
@@ -101,20 +146,30 @@ const BlogEditor = () => {
                 <textarea
                     defaultValue={title}
                     placeholder='Blog Title'
-                    className='w-full bg-yellow-500  dark:bg-[#111827] mt-10 leading-tight placeholder:opacity-40 rounded-md mx-auto flex items-center max-w-[900px] pt-4 text-4xl font-medium h-20 outline-none resize-none'
+                    className='w-full bg-yellow-500 text-black dark:text-white  dark:bg-[#111827] mt-10 leading-tight placeholder:opacity-60 placeholder:dark:text-white placeholder:text-black rounded-md mx-auto flex items-center max-w-[900px] pt-4 text-4xl font-medium h-20 outline-none resize-none'
                     onKeyDown={handleTitleKeyDown}
                     onChange={handleTitleChange}
                 >
                 </textarea>
 
-                <hr className='w-full opacity-20 my-10 ' />
+                <hr className='w-full opacity-60 my-10 dark:border-white border-black ' />
 
-                <div id="textEditor" className='font-gelasio'>
+                <div id="textEditor" className=' dark:text-white text-black'>
+
+
+
 
                 </div>
-                <button onClick={handlePublishForm}>
-                    Publish
-                </button>
+                <div className=' text-black md:space-x-16 space-x-10     pb-10'>
+
+                    <button className='bg-white/80 hover:bg-white w-fit mx-auto hover:scale-105 duration-200 px-6 py-2 rounded-lg' onClick={handlePublishForm}>
+                        Publish
+                    </button>
+
+                    <button className='bg-white/80 hover:bg-white w-fit mx-auto hover:scale-105 duration-200 px-6 py-2 rounded-lg' onClick={handleSaveDraft}>
+                        Save Draft
+                    </button>
+                </div>
             </div>
 
 

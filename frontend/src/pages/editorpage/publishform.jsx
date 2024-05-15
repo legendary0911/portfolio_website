@@ -1,13 +1,19 @@
 import React, { useContext } from 'react'
 import { toast } from 'react-toastify'
 import { EditorContext } from '.'
+import { useUser } from '../../api/Contextapi'
+import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 
 const PublishForm = () => {
-    let { setEditorState, blog: { banner, title, des }, setBlog, blog } = useContext(EditorContext)
+    let { setEditorState, blog: { banner, title, des, content }, setBlog, blog } = useContext(EditorContext)
     let charLimit = '200';
     const handleCloseEvent = () => {
         setEditorState("editor");
     }
+    const { user, userdata } = useUser()
+
+    const navigateTo = useNavigate();
 
     const handleBlogTitleChange = (e) => {
         let input = e.target;
@@ -18,6 +24,44 @@ const PublishForm = () => {
     const handleBlogDesChange = (e) => {
         let input = e.target;
         setBlog({ ...blog, des: input.value })
+    }
+
+    const publishBlog = async (e) => {
+        const loadingToast = toast.loading("Publishing....");
+
+        try {
+            if (e.target.className.includes("disable")) {
+                return toast.error("Blog is publishing");
+            }
+            if (!title.length) {
+                return toast.error("Write Blog title before publishing");
+            }
+            if (!des.length || des.length > charLimit) {
+                return toast.error(`Write a description within ${charLimit}`);
+            }
+
+
+            e.target.classList.add('disable');
+            let blogObj = {
+                title, banner, des, content, author: "Kumar Shivam", draft: false, token: userdata.token
+            }
+
+            const response = await axios.post("http://localhost:3000/api/blogs", blogObj)
+            console.log(response)
+            e.target.classList.remove('disable');
+            toast.dismiss(loadingToast);
+            toast.success("Blog Published");
+            setTimeout(() => {
+                navigateTo("/blogs")
+            }, 2000);
+
+        } catch (err) {
+            console.log(err);
+            toast.dismiss(loadingToast);
+            e.target.classList.remove('disable')
+            return toast.error(err);
+        }
+
     }
     return (
         <div className='bg-yellow-500 dark:bg-[#111827] text-white'>
@@ -48,7 +92,7 @@ const PublishForm = () => {
                     </textarea>
                     <p className='mt-1 text-right text-gray-400 text-sm'>{charLimit - des.length} characters left</p>
 
-                    <button className='mt-10'>Publish</button>
+                    <button className='mt-10' onClick={publishBlog}>Publish</button>
                 </div>
             </section>
         </div>

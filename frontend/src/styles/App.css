@@ -1,3 +1,22 @@
+.ce-block {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.ce-toolbar__plus,
+.ce-toolbar__settings-btn,
+/* .ce-paragraph {
+  color: black;
+  @media screen and (prefers-color-scheme: dark) {
+    color: white;
+  }
+} */
+
+.ce-toolbar__plus:hover,
+.ce-toolbar__settings-btn:hover {
+  color: #333 !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
